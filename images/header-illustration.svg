@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <!-- Background shape -->
+  <path d="M100,100 Q400,50 700,200 Q750,400 600,500 Q400,600 200,500 Q50,400 100,100" 
+        fill="#e6f3ff" opacity="0.5"/>
+  
+  <!-- Target icon -->
+  <circle cx="300" cy="250" r="40" fill="#007bff"/>
+  <circle cx="300" cy="250" r="30" fill="white"/>
+  <circle cx="300" cy="250" r="20" fill="#007bff"/>
+  <circle cx="300" cy="250" r="10" fill="white"/>
+  
+  <!-- Gear icons -->
+  <circle cx="500" cy="200" r="25" fill="#28a745"/>
+  <circle cx="550" cy="250" r="20" fill="#28a745"/>
+  
+  <!-- Chart icon -->
+  <rect x="400" y="300" width="100" height="80" fill="#f8f9fa" stroke="#007bff" stroke-width="2"/>
+  <path d="M410,360 L440,320 L470,350 L490,310" stroke="#007bff" fill="none" stroke-width="2"/>
+  
+  <!-- People illustrations -->
+  <circle cx="250" cy="400" r="20" fill="#007bff"/>
+  <rect x="240" cy="420" width="20" height="40" fill="#007bff"/>
+  
+  <circle cx="350" cy="400" r="20" fill="#28a745"/>
+  <rect x="340" cy="420" width="20" height="40" fill="#28a745"/>
+</svg> 
