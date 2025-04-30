@@ -72,7 +72,7 @@ a:hover {
 .section-container {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 4rem 1rem;
+  padding: 1rem 1rem;
 }
 
 /* Section Title */
@@ -663,6 +663,9 @@ header.scrolled {
   .sm-w-2-3 {
     width: 66.666667%;
   }
+  .tp-mrg-0{
+    margin-top: 0;
+  }
 }
 
 @media (min-width: 768px) {
@@ -705,12 +708,18 @@ header.scrolled {
   .md-w-64 {
     width: 16rem;
   }
+  .tp-mrg-0{
+    margin-top: 18rem;
+  }
 }
 
 @media (min-width: 1024px) {
   .lg-px-8 {
     padding-left: 2rem;
     padding-right: 2rem;
+  }
+  .tp-mrg-0{
+    margin-top: 18rem;
   }
 }
 
