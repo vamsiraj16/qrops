@@ -129,4 +129,97 @@ document.addEventListener('DOMContentLoaded', function() {
         behavior: 'smooth'
       });
     });
+    
+    // Business Advisory 3D Carousel with Scroll Effect and Arrows
+    (function() {
+      const track = document.querySelector('.advisory-carousel-track');
+      const items = Array.from(document.querySelectorAll('.advisory-carousel-item'));
+      const leftBtn = document.querySelector('.advisory-carousel-arrow.left');
+      const rightBtn = document.querySelector('.advisory-carousel-arrow.right');
+      if (!track || !items.length) return;
+
+      let current = 0;
+      let isScrolling = false;
+      function updateCarousel() {
+        items.forEach((item, i) => {
+          item.classList.remove('active', 'left', 'right');
+          item.style.zIndex = 1;
+          if (i === current) {
+            item.classList.add('active');
+            item.style.zIndex = 3;
+          } else if (i === (current - 1 + items.length) % items.length) {
+            item.classList.add('left');
+            item.style.zIndex = 2;
+          } else if (i === (current + 1) % items.length) {
+            item.classList.add('right');
+            item.style.zIndex = 2;
+          }
+        });
+      }
+      updateCarousel();
+
+      // Arrow buttons
+      if (leftBtn && rightBtn) {
+        leftBtn.addEventListener('click', () => {
+          current = (current - 1 + items.length) % items.length;
+          updateCarousel();
+        });
+        rightBtn.addEventListener('click', () => {
+          current = (current + 1) % items.length;
+          updateCarousel();
+        });
+      }
+
+      // Scroll event (mouse wheel)
+      track.addEventListener('wheel', (e) => {
+        if (isScrolling) return;
+        isScrolling = true;
+        if (e.deltaY > 0 || e.deltaX > 0) {
+          current = (current + 1) % items.length;
+        } else if (e.deltaY < 0 || e.deltaX < 0) {
+          current = (current - 1 + items.length) % items.length;
+        }
+        updateCarousel();
+        setTimeout(() => { isScrolling = false; }, 400);
+      });
+
+      // Touch swipe for mobile
+      let startX = 0;
+      track.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+      });
+      track.addEventListener('touchend', (e) => {
+        const endX = e.changedTouches[0].clientX;
+        if (Math.abs(endX - startX) > 30) {
+          if (endX < startX) {
+            current = (current + 1) % items.length;
+          } else {
+            current = (current - 1 + items.length) % items.length;
+          }
+          updateCarousel();
+        }
+      });
+
+      // 3D tilt effect for active item
+      items.forEach(item => {
+        item.addEventListener('mousemove', (e) => {
+          if (!item.classList.contains('active')) return;
+          const rect = item.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          const rotateX = ((y - centerY) / centerY) * 8; // max 8deg
+          const rotateY = ((x - centerX) / centerX) * 8;
+          item.style.transform = `translate(-50%, -50%) scale(1.08) rotateY(${rotateY}deg) rotateX(${-rotateX}deg)`;
+        });
+        item.addEventListener('mouseleave', () => {
+          if (item.classList.contains('active')) {
+            item.style.transform = 'translate(-50%, -50%) scale(1.08)';
+          } else {
+            item.style.transform = '';
+          }
+        });
+      });
+    })();
   });
